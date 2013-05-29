@@ -2,6 +2,7 @@ import harbor.Location;
 import harbor.State;
 import harbor.User;
 import harbor.Type;
+import harbor.Asset;
 
 class BootStrap {
 
@@ -20,6 +21,12 @@ class BootStrap {
 		new Type(type:"Dell E6500").save(failOnError:true)
 		new Type(type:"Dell E6510").save(failOnError:true)
 		new Type(type:"Dell E6520").save(failOnError:true)
+		
+		Asset.add("10001", "6TP6TK4", "1", "3", "1", "");
+		Asset.add("10002", "8TP5T3K", "2", "2", "1", "");
+		Asset.add("10003", "12T233K", "3", "1", "1", "");
+		Asset.add("10004", "3TP513K", "2", "2", "1", "");
+		Asset.add("10005", "914TG1K", "1", "1", "1", "");
 		
     }
     def destroy = {

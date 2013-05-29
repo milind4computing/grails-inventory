@@ -66,8 +66,7 @@ h2 {
 	color: #3F4C6B;
 	font-weight: bold;
 	font-size: 1.3em;
-	margin: 0.3em;
-	margin-left: 20px;
+	margin-bottom: 0.5em;
 }
 
 p {
@@ -131,7 +130,6 @@ img {
 
 #content {
 	padding: 20px;
-	width: 100%;
 }
 
 #content h1 {
@@ -173,18 +171,43 @@ img {
 
 /* ASSET STYLING  */
 
+#asset-info {
+	min-width:900px;
+}
+
+#asset-quick-info-left {
+	float:left;
+	padding-left:20px;
+}
+
+#asset-quick-info-right {
+	float:right;
+	padding-right: 20px;
+}
+
 #show-asset {
 	float:left;
-	width:70%;
-	max-width: 780px;
+	width:65%;
 }
 
-#asset-info {
-	float:left;
+#list-asset {
+	margin: 20px 20px 0px;
 }
 
-#asset-location {
+#update-asset {
+	width:260px;
 	float:right;
+	padding: 20px;
+}
+
+#list-update {
+	padding-top: 20px;
+	margin: 0 20px;
+}
+
+#update-asset .fieldcontain label,
+#update-asset .fieldcontain .property-label {
+	width: 30%;
 }
 
 #asset-update {
@@ -192,6 +215,17 @@ img {
 	float:right;
 	width:30%;
 	min-width: 330px;
+}
+
+#asset-search {
+	float:left;
+	width:65%;
+}
+
+#asset-options {
+	float:right;
+	width:260px;
+	padding:10px;
 }
 
 
@@ -269,11 +303,25 @@ img {
 
 fieldset,
 .property-list {
-	margin: 0.6em 1.75em 0 1.25em;
 	padding: 0.3em 1.8em 1.25em; 
 	border: none;
 	background: #eee;
-	width: 280px;
+	width: 205px;
+}
+
+#create-asset fieldset, 
+#create-asset .property-list {
+	padding: 0.3em 1.8em 1.25em; 
+	border: none;
+	min-width: 335px;
+	margin-left:20px;
+}
+
+
+#create-asset .property-list .fieldcontain {
+	list-style: none;
+	overflow: hidden;
+	zoom: 1;
 }
 
 .property-list .fieldcontain {
@@ -290,7 +338,7 @@ fieldset,
 .fieldcontain .property-label {
 	color: #666;
 	text-align: left;
-	width: 45%;
+	width: 40%;
 }
 
 .fieldcontain .property-label {
@@ -324,10 +372,15 @@ select[multiple] {
 }
 
 textarea {
-	width: 250px;
-	height: 150px;
+	width: 205px;
+	height: 70px;
 	overflow: auto; /* IE always renders vertical scrollbar without this */
 	vertical-align: top;
+}
+
+#update-asset text-area {
+	width:90%;
+	height: 50%;
 }
 
 input[type=checkbox], input[type=radio] {
@@ -475,7 +528,6 @@ tr>td:last-child, tr>th:last-child {
 }
 
 td, th {
-	line-height: 1.5em;
 	padding: 0.5em 0.6em;
 	text-align: left;
 	vertical-align: top;
@@ -648,4 +700,8 @@ th.desc a {
 a.skip {
 	position: absolute;
 	left: -9999px;
+}
+
+.clearBoth {
+	clear:both;	
 }

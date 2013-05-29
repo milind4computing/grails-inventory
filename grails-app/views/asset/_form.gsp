@@ -34,20 +34,3 @@
 	<g:select id="location" name="location.id" from="${harbor.Location.list()}" optionKey="id" required="" value="" class="many-to-one"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: assetInstance, field: 'updates', 'error')} ">
-	<label for="updates">
-		<g:message code="asset.updates.label" default="Updates" />
-		
-	</label>
-	
-<ul class="one-to-many">
-<g:each in="${assetInstance?.updates?}" var="u">
-    <li><g:link controller="update" action="show" id="${u.id}">${u?.encodeAsHTML()}</g:link></li>
-</g:each>
-<li class="add">
-<g:link controller="update" action="create" params="['asset.id': assetInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'update.label', default: 'Update')])}</g:link>
-</li>
-</ul>
-
-</div>
-

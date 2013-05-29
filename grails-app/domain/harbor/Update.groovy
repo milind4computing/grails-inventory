@@ -22,4 +22,16 @@ class Update {
 	String toString() {
 		occurredAt.toString()
 	}
+	
+	static void add(String hubId, String locationId, String stateId, String userId, String note) {
+		def update = new Update(
+			asset: Asset.findByHubId(hubId),
+			location: Location.findById(locationId),
+			state: State.findById(stateId),
+			occurredAt: new Date(),
+			occurredBy: User.findById(userId),
+			note: note
+		)
+		update.save()
+	}
 }

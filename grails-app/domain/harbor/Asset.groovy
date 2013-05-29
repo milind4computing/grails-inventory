@@ -38,8 +38,12 @@ class Asset {
 		update.save(failOnError:true)
 	}
 	
+	void setServiceTag(String serviceTag) {
+		this.serviceTag = serviceTag.toUpperCase()
+	}
+	
 	Update[] getUpdateHistory() {
-		Update.findAllByAsset(this)
+		Update.findAllByAsset(this, [max:25, sort:"occurredAt", order:"desc"])
 	}
 	
 	Update getLatestUpdate() {
