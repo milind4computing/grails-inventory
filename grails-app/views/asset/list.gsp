@@ -7,7 +7,7 @@
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<div id="asset-content">
+		<div id="main-content">
 		<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 		<div id="list-asset" class="content scaffold-list" role="main">
 			<g:if test="${flash.message}">
@@ -16,11 +16,11 @@
 			<table>
 				<thead>
 					<tr>
-						<g:sortableColumn property="hubId" title="${message(code: 'asset.hubId.label', default: 'Hub Id')}" />
-						<g:sortableColumn property="serviceTag" title="${message(code: 'asset.serviceTag.label', default: 'Service Tag')}" />
-						<g:sortableColumn property="type" title="${message(code: 'asset.type.label', default: 'Type')}" />
-						<g:sortableColumn property="state" title="${message(code: 'update.state.label', default: 'State')}" />
-						<g:sortableColumn property="location" title="${message(code: 'update.location.label', default: 'Location')}" />
+						<th>${message(code: 'asset.hubId.label', default: 'Hub Id')}</th>
+						<th>${message(code: 'asset.serviceTag.label', default: 'Service Tag')}</th>
+						<th>${message(code: 'asset.type.label', default: 'Type')}</th>
+						<th>${message(code: 'update.state.label', default: 'State')}</th>
+						<th>${message(code: 'update.location.label', default: 'Location')}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -28,9 +28,7 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
 						<td><g:link action="show" id="${assetInstance.hubId}">${fieldValue(bean: assetInstance, field: "hubId")}</g:link></td>
-					
 						<td>${fieldValue(bean: assetInstance, field: "serviceTag")}</td>
-					
 						<td><g:link controller="type" action="show" id="${assetInstance.type.id}">${fieldValue(bean: assetInstance, field: "type")}</g:link></td>
 						<td><g:link controller="asset" action="list_by_state" id="${assetInstance.getState().id}">${assetInstance.getState()}</g:link></td>
 						<td><g:link controller="location" action="show" id="${assetInstance.getLocation().id}">${assetInstance.getLocation()}</g:link></td>
@@ -40,8 +38,8 @@
 			</table>
 		</div>
 		</div>
-		<div id="asset-options">
-			<g:render template="/common/sidebar" />
+		<div id="options">
+			<g:render template="/asset/sidebar" />
 		</div>
 	</body>
 </html>

@@ -5,7 +5,7 @@
 </head>
 
 <body>
-	<div id="asset-content">
+	<div id="main-content">
 		<h1>Search</h1>
 		<g:if test="${flash.message}">
 			<div class="message">
@@ -22,8 +22,8 @@
 			<g:actionSubmit class="button" value="Search" action="list" />
 		</g:form>
 	</div>
-	<div id="asset-options">
-		<g:render template="/common/sidebar" />
+	<div id="options">
+		<g:render template="/asset/sidebar" />
 	</div>
 </body>
 </html>

@@ -34,6 +34,7 @@ body {
 	margin: 0 auto;
 	width: 100%;
 	overflow-x: hidden; /* prevents box-shadow causing a horizontal scrollbar in firefox when viewport < 960px wide */
+	min-width: 785px;
 }
 
 
@@ -225,24 +226,25 @@ img {
 	min-width: 330px;
 }
 
-#asset-content {
+#main-content {
 	float:left;
 	width:65%;
 }
 
-#asset-options {
+#options {
 	float:right;
-	width:320px;
-	padding:10px;
+	width:240px;
+	padding:0px;
+	text-align:left;
 }
 
-#asset-options a {
+#options a {
 	color: #1E3F6C;
 	text-decoration: none;
 }
 
-#asset-options a:hover,
-#asset-options a:visited {
+#options a:hover,
+#options a:visited {
 	color: #1E3F6C;
 	text-decoration: none;
 }
@@ -364,8 +366,8 @@ fieldset,
 	width: 40%;
 }
 
-#asset-options .fieldcontain label,
-#asset-options .fieldcontain .property-label {
+#options .fieldcontain label,
+#options .fieldcontain .property-label {
 	color: #666;
 	text-align: left;
 	width: 25%;

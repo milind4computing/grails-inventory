@@ -6,7 +6,11 @@ class SessionController {
 		redirect(action:"login")
 	}
 	
-    def login() {}
+    def login() {
+		if(session.user) {
+			redirect(controller:"home", action:"index")
+		}
+	}
 	def logout() {
 		if(session.user) {
 			session.user = null

@@ -7,7 +7,7 @@
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
 	</head>
 	<body>
-	<div id="asset-content">
+	<div id="main-content">
 		<a href="#create-asset" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div id="create-asset" class="content scaffold-create" role="main">
 			<h1>New Asset</h1>
@@ -29,8 +29,8 @@
 			</g:form>
 		</div>
 	</div>
-	<div id="asset-options">
-		<g:render template="/common/sidebar" />
+	<div id="options">
+		<g:render template="/asset/sidebar" />
 	</div>
 	</body>
 </html>

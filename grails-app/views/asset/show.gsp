@@ -8,7 +8,7 @@
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
 	<body>
-	<div id="asset-content" class="content scaffold-show" role="main">
+	<div id="main-content" class="content scaffold-show" role="main">
 		<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 		</g:if>
@@ -76,8 +76,8 @@
 			</div>
 		</div>
 	</div>
-	<div id="asset-options">
-		<g:render template="/common/sidebar" />
+	<div id="options">
+		<g:render template="/asset/sidebar" />
 	</div>
 	</body>
 </html>

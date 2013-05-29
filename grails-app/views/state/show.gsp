@@ -9,7 +9,7 @@
 		<title>List Assets - ${stateInstance}</title>
 	</head>
 	<body>
-		<div id="asset-content">
+		<div id="main-content">
 			<h1>Asset List</h1>
 			<div id="list-asset" class="content scaffold-list" role="main">
 			<g:if test="${flash.message}">
@@ -43,7 +43,7 @@
 			</g:if>
 		</div>
 		</div>
-		<div id="asset-options">
+		<div id="options">
 		</div>
 	</body>
 </html>
