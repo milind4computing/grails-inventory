@@ -5,7 +5,7 @@
 </head>
 
 <body>
-	<div id="asset-search">
+	<div id="asset-content">
 		<h1>Search</h1>
 		<g:if test="${flash.message}">
 			<div class="message">

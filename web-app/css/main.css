@@ -1,7 +1,7 @@
 /* FONT STACK */
 body,
 input, select, textarea {
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 	font-weight: normal;
 }
 
@@ -13,6 +13,7 @@ h1, h2, h3, h4, h5, h6 {
 
 html {
 	background-color: #fff;
+	-webkit-font-smoothing: antialiased;
 }
 
 html.no-cssgradients {
@@ -50,12 +51,19 @@ body {
 	height: 100%;
 }
 
+a, a:visited {
+	color: #1E3F6C;
+	text-decoration: none;
+}
+
 a:hover, a:active {
 	outline: none; /* prevents outline in webkit on active links but retains it for tab focus */
+	color: #1E3F6C;
+	text-decoration: underline;
 }
 
 h1 {
-	color: #3F4C6B;
+	color: #1E3F6C;
 	font-weight: bold;
 	font-size: 1.6em;
 	margin: 0.3em;
@@ -63,7 +71,7 @@ h1 {
 }
 
 h2 {
-	color: #3F4C6B;
+	color: #1E3F6C;
 	font-weight: bold;
 	font-size: 1.3em;
 	margin-bottom: 0.5em;
@@ -175,12 +183,12 @@ img {
 	min-width:900px;
 }
 
-#asset-quick-info-left {
+#asset-left {
 	float:left;
 	padding-left:20px;
 }
 
-#asset-quick-info-right {
+#asset-right {
 	float:right;
 	padding-right: 20px;
 }
@@ -217,17 +225,27 @@ img {
 	min-width: 330px;
 }
 
-#asset-search {
+#asset-content {
 	float:left;
 	width:65%;
 }
 
 #asset-options {
 	float:right;
-	width:260px;
+	width:320px;
 	padding:10px;
 }
 
+#asset-options a {
+	color: #1E3F6C;
+	text-decoration: none;
+}
+
+#asset-options a:hover,
+#asset-options a:visited {
+	color: #1E3F6C;
+	text-decoration: none;
+}
 
 /* NAVIGATION MENU */
 
@@ -303,7 +321,7 @@ img {
 
 fieldset,
 .property-list {
-	padding: 0.3em 1.8em 1.25em; 
+	padding: 0.3em 1.0em 1.25em; 
 	border: none;
 	background: #eee;
 	width: 205px;
@@ -324,6 +342,11 @@ fieldset,
 	zoom: 1;
 }
 
+
+#asset-left fieldset, .property-list {
+	width: 280px;
+}
+
 .property-list .fieldcontain {
 	list-style: none;
 	overflow: hidden;
@@ -341,13 +364,20 @@ fieldset,
 	width: 40%;
 }
 
+#asset-options .fieldcontain label,
+#asset-options .fieldcontain .property-label {
+	color: #666;
+	text-align: left;
+	width: 25%;
+}
+
 .fieldcontain .property-label {
 	float: left;
 }
 
 .fieldcontain .property-value {
 	display: block;
-	margin-left: 27%;
+	margin-left: 25%;
 }
 
 label {
@@ -399,7 +429,7 @@ input:focus, select:focus, textarea:focus {
 }
 
 .required-indicator {
-	color: #3F4C6B;
+	color: #1E3F6C;
 	display: inline-block;
 	font-weight: bold;
 	margin-left: 0.3em;
@@ -535,10 +565,10 @@ td, th {
 
 th {
 	background-color: #efefef;
-	background-image: -moz-linear-gradient(top, #ffffff, #eaeaea);
+	/* background-image: -moz-linear-gradient(top, #ffffff, #eaeaea);
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ffffff), color-stop(1, #eaeaea));
 	    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = '#ffffff', EndColorStr = '#eaeaea');
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff', EndColorStr='#eaeaea')";
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff', EndColorStr='#eaeaea')"; */
 	color: #666666;
 	font-weight: bold;
 	line-height: 1.7em;
@@ -582,6 +612,10 @@ th.desc a {
 
 .even {
 	background: #ffffff;
+}
+
+tr:hover {
+	background: #ccd6ff;
 }
 
 

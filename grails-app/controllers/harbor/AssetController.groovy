@@ -1,5 +1,6 @@
 package harbor
 
+import org.apache.jasper.compiler.Node.ParamsAction;
 import org.springframework.dao.DataIntegrityViolationException
 
 class AssetController {
@@ -11,22 +12,32 @@ class AssetController {
     }
 
     def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        def hubId = params.hubId
-		if(hubId) {
-			def assets = Asset.findAllByHubIdLike("%${hubId}%")
+        def assets
+		if(params.hubId) {
+			assets = Asset.findAllByHubIdLike("%${params.hubId}%", [max:25])
 			if (assets == null) {
-				flash.message = "No assets found for HUB ID: ${hubId}"
+				flash.message = "No assets found for HUB ID: ${params.hubId}"
 				redirect(action:'search')
 			} else {
 				[assetInstanceList: assets, assetInstanceTotal: Asset.count()]
 			}
-		} else if (hubId == "") { 
+		} else if (params.hubId == "") { 
 			flash.message = "Please enter a search term."
 			redirect(action:'search')
+    	} else if (params.typeId) {
+			def type = Type.findById(params.typeId)
+			assets = Asset.findAllByType(type)
+    	} else if (params.stateId) {
+			def state = State.findById(params.stateId)
+			assets = Asset.findAllByState(state)
+    	} else if (params.locationId) {
+			def location = Location.findById(params.locationId)
+			assets = Asset.findAllByLocation(location)
     	} else {
 			[assetInstanceList: Asset.list(params), assetInstanceTotal: Asset.count()]
 		}
+		
+		[assetInstanceList: assets, assetInstanceTotal: Asset.count()]
     }
 
     def create() {
@@ -37,35 +48,51 @@ class AssetController {
 			redirect(action:"search")
 		}
     }
+	
+	def listByType(Long id) {
+		forward(action:"list", params:[typeId: id])
+	}
+	
+	def listByState(Long id) {
+		forward(action:"list", params:[stateId: id])
+	}
+	
+	def listByLocation(Long id) {
+		forward(action:"list", params:[locationId: id])
+	}
 
     def save() {
 		if(session.user && session.user.isAdmin) {
-			Asset.add(params.hubId, params.serviceTag, params.type.id, params.location.id, session.user.id.toString(), "")
-			flash.message = "Asset successfully created!"
-			redirect(action:"list")
+			if(params.hubId.matches("[0-9]+")) {
+				try {
+					Asset.add(params.hubId, params.serviceTag, params.type.id, params.location.id, session.user.id.toString(), "Initial creation.")
+					flash.message = "Asset successfully created!"
+					redirect(action:"search")
+				} catch (Exception e) {
+					flash.message = "An error occurred."
+					redirect(action:"create")
+				}
+			} else {
+				flash.message = "HUB ID can only be numbers"
+				redirect(action:"create")
+			}
 		} else {
 			flash.message = "You do not have rights to create assets."
 			redirect(action:"search")
 		}
-//        def assetInstance = new Asset(params)
-//        if (!assetInstance.save(flush: true)) {
-//            render(view: "create", model: [assetInstance: assetInstance])
-//            return
-//        }
-//
-//        flash.message = message(code: 'default.created.message', args: [message(code: 'asset.label', default: 'Asset'), assetInstance.id])
-//        redirect(action: "show", id: assetInstance.id)
     }
 
     def show(Long id) {
-        def assetInstance = Asset.findByHubId(id)
-        if (!assetInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'asset.label', default: 'Asset'), id])
-            redirect(action: "list")
-            return
-        }
-
-        [assetInstance: assetInstance]
+		if(session.user){
+	        def assetInstance = Asset.findByHubId(id)
+	        if (!assetInstance) {
+	            flash.message = message(code: 'default.not.found.message', args: [message(code: 'asset.label', default: 'Asset'), id])
+	            redirect(action: "list")
+	            return
+	        }
+	
+	        [assetInstance: assetInstance]
+		}
     }
 
     def edit(Long id) {

@@ -1,56 +1,49 @@
 
 <%@ page import="harbor.State" %>
+<%@ page import="harbor.Update" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'state.label', default: 'State')}" />
-		<title><g:message code="default.show.label" args="[entityName]" /></title>
+		<title>List Assets - ${stateInstance}</title>
 	</head>
 	<body>
-		<a href="#show-state" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="show-state" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
+		<div id="asset-content">
+			<h1>Asset List</h1>
+			<div id="list-asset" class="content scaffold-list" role="main">
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<ol class="property-list state">
-			
-				<g:if test="${stateInstance?.state}">
-				<li class="fieldcontain">
-					<span id="state-label" class="property-label"><g:message code="state.state.label" default="State" /></span>
-					
-						<span class="property-value" aria-labelledby="state-label"><g:fieldValue bean="${stateInstance}" field="state"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${stateInstance?.updates}">
-				<li class="fieldcontain">
-					<span id="updates-label" class="property-label"><g:message code="state.updates.label" default="Updates" /></span>
-					
-						<g:each in="${stateInstance.updates}" var="u">
-						<span class="property-value" aria-labelledby="updates-label"><g:link controller="update" action="show" id="${u.id}">${u?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
-			</ol>
-			<g:form>
-				<fieldset class="buttons">
-					<g:hiddenField name="id" value="${stateInstance?.id}" />
-					<g:link class="edit" action="edit" id="${stateInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
+			<% def updates = Update.findAllByState(stateInstance, [max:25, sort:"occurredAt", order:"desc"]) %>			
+			<g:if test="${stateInstance?.updates}">
+				<table>
+					<thead>
+						<tr>
+							<th>${message(code: 'asset.hubId.label', default: 'Hub Id')}</th>
+							<th>${message(code: 'asset.serviceTag.label', default: 'Service Tag')}</th>
+							<th>${message(code: 'asset.type.label', default: 'Type')}</th>
+							<th>${message(code: 'update.state.label', default: 'State')}</th>
+							<th>${message(code: 'update.location.label', default: 'Location')}</th>
+						</tr>
+					</thead>
+					<tbody>
+					<g:each in="${updates}" status="i" var="update">
+						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+						
+							<td><g:link controller="asset" action="show" id="${update.asset.hubId}">${update.asset.hubId}</g:link></td>
+							<td>${update.asset.serviceTag}</td>
+							<td><g:link controller="asset" action="listByType" id="${update.asset.type.id}">${update.asset.type}</g:link></td>
+							<td><g:link controller="state" action="show" id="${update.state.id}">${update.state}</g:link></td>
+							<td><g:link controller="location" action="show" id="${update.location.id}">${update.location}</g:link></td>
+						</tr>
+					</g:each>
+					</tbody>
+				</table>
+			</g:if>
+		</div>
+		</div>
+		<div id="asset-options">
 		</div>
 	</body>
 </html>

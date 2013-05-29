@@ -5,7 +5,6 @@
 </head>
 
 <body>
-	
 	<h1>Login</h1>
 	<g:if test="${flash.message}">
 		<div class="message">

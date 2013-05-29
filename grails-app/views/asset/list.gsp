@@ -1,4 +1,3 @@
-
 <%@ page import="harbor.Asset" %>
 <!DOCTYPE html>
 <html>
@@ -8,7 +7,7 @@
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<div id="asset-search">
+		<div id="asset-content">
 		<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 		<div id="list-asset" class="content scaffold-list" role="main">
 			<g:if test="${flash.message}">
@@ -33,15 +32,12 @@
 						<td>${fieldValue(bean: assetInstance, field: "serviceTag")}</td>
 					
 						<td><g:link controller="type" action="show" id="${assetInstance.type.id}">${fieldValue(bean: assetInstance, field: "type")}</g:link></td>
-						<td><g:link controller="state" action="show" id="${assetInstance.getState().id}">${assetInstance.getState()}</g:link></td>
+						<td><g:link controller="asset" action="list_by_state" id="${assetInstance.getState().id}">${assetInstance.getState()}</g:link></td>
 						<td><g:link controller="location" action="show" id="${assetInstance.getLocation().id}">${assetInstance.getLocation()}</g:link></td>
 					</tr>
 				</g:each>
 				</tbody>
 			</table>
-			<div class="pagination">
-				<g:paginate total="${assetInstanceTotal}" />
-			</div>
 		</div>
 		</div>
 		<div id="asset-options">

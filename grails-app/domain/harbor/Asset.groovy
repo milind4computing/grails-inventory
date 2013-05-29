@@ -10,7 +10,7 @@ class Asset {
 	static hasMany = [updates: Update]
 	
     static constraints = {
-		hubId(blank:false, unique:true)
+		hubId(blank:false, unique:true, matches:"[0-9]+")
 		serviceTag(blank:false)
 		type()
     }
