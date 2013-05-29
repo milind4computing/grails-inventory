@@ -18,22 +18,9 @@
 		<r:layoutResources />
 	</head>
 	<body>
-		<div id="topbar" role="banner">
-			<span id="logo"><a href="/harbor"><h1>Harbor</h1></a></span>
-			<span id="navigation">
-				<ul>
-					<li><g:link controller="home">Home</g:link></li>
-					<li><g:link controller="asset" action="search">Assets</g:link></li>
-					<li><g:link controller="client" action="list">Clients</g:link></li>
-					<g:if test="${session.user}">
-						<li><g:link controller="session" action="logout">Logout</g:link></li>
-					</g:if><g:else>
-						<li><g:link controller="session" action="login">Login</g:link></li>
-					</g:else>
-				</ul>
-			</span>
-		</div>
-		<div id="content"><g:layoutBody/></div>
+		<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>
+		<g:layoutBody/>
+		<div class="footer" role="contentinfo"></div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 		<g:javascript library="application"/>
 		<r:layoutResources />
