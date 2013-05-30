@@ -34,7 +34,7 @@
 							<td><g:link controller="asset" action="show" id="${update.asset.hubId}">${update.asset.hubId}</g:link></td>
 							<td>${update.asset.serviceTag}</td>
 							<td><g:link controller="asset" action="listByType" id="${update.asset.type.id}">${update.asset.type}</g:link></td>
-							<td><g:link controller="state" action="show" id="${update.state.id}">${update.state}</g:link></td>
+							<td><g:link controller="state" action="show" id="${update.state.id}" class="state-${update.state.toString().replace(" ","-")}">${update.state}</g:link></td>
 							<td><g:link controller="location" action="show" id="${update.location.id}">${update.location}</g:link></td>
 						</tr>
 					</g:each>

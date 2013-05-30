@@ -12,7 +12,7 @@ class AssetController {
     }
 
     def list(Integer max) {
-        def assets
+        def assets	
 		if(params.hubId) {
 			assets = Asset.findAllByHubIdLike("%${params.hubId}%", [max:25])
 			if (assets == null) {

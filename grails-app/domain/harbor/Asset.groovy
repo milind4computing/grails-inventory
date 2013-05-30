@@ -48,7 +48,6 @@ class Asset {
 	
 	Update getLatestUpdate() {
 		def updates = Update.findAllByAsset(this, [max:1, sort:"occurredAt", order:"desc"])
-		println updates
 		updates[0]
 	}
 	
@@ -58,5 +57,17 @@ class Asset {
 	
 	Location getLocation() {
 		getLatestUpdate().location
+	}
+	
+	// This is kind of hack-ish.
+	static Asset[] getAssetsByState(State state) {
+		def assets = Asset.list();
+		ArrayList<Asset> assetsByState = new ArrayList<>();;
+		assets.each { asset ->
+			if(asset.state == state) {
+				assetsByState.add(asset)
+			}
+		}
+		assetsByState
 	}
 }

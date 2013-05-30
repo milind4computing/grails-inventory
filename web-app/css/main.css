@@ -13,7 +13,6 @@ h1, h2, h3, h4, h5, h6 {
 
 html {
 	background-color: #fff;
-	-webkit-font-smoothing: antialiased;
 }
 
 html.no-cssgradients {
@@ -35,6 +34,8 @@ body {
 	width: 100%;
 	overflow-x: hidden; /* prevents box-shadow causing a horizontal scrollbar in firefox when viewport < 960px wide */
 	min-width: 785px;
+	-webkit-font-smoothing: antialiased;
+	/* font-size:90%; */
 }
 
 
@@ -247,6 +248,62 @@ img {
 #options a:visited {
 	color: #1E3F6C;
 	text-decoration: none;
+}
+
+/* I will delete these eventually */
+#dashboard #main-content {
+	width:84%;
+}
+
+#dashboard #options {
+	width: 15%;
+}
+
+/* STATE IMAGES */
+
+.state-Holding {
+	background: url("/harbor/images/states/holding.png") no-repeat;
+	padding-left: 20px;
+}
+
+.state-Issuable {
+	background: url("/harbor/images/states/issuable.png") no-repeat;
+	padding-left: 20px;
+}
+
+.state-In-for-repair {
+	background: url("/harbor/images/states/in_for_repair.png") no-repeat;
+	padding-left: 20px;
+}
+
+.state-Issued {
+	background: url("/harbor/images/states/issued.png") no-repeat;
+	padding-left: 20px;
+}
+
+.state-Not-working {
+	background: url("/harbor/images/states/not_working.png") no-repeat;
+	padding-left: 20px;
+}
+
+.state-Part-out {
+	background: url("/harbor/images/states/part_out.png") no-repeat;
+	padding-left: 20px;
+}
+
+.state-Service-Pool {
+	background: url("/harbor/images/states/service_pool.png") no-repeat;
+	padding-left: 20px;
+}
+
+.state-Stolen {
+	background: url("/harbor/images/states/stolen.png") no-repeat;
+	padding-left: 20px;
+}
+
+.state-Surplused {
+	background: url("/harbor/images/states/surplused.png") no-repeat;
+	padding-left: 20px;
 }
 
 /* NAVIGATION MENU */

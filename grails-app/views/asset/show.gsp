@@ -39,7 +39,7 @@
 					</li>
 					<li class="fieldcontain">
 						<span id="state-label" class="property-label"><g:message code="update.state.label" /></span>
-						<span class="property-value"><g:link controller="state" action="show" id="${state.id}">${state.encodeAsHTML()}</g:link></span>
+						<span class="property-value"><g:link controller="state" action="show" id="${state.id}" class="state-${state.toString().replace(" ","-")}">${state.encodeAsHTML()}</g:link></span>
 					</li>
 				</ol>
 			</div>
@@ -62,7 +62,7 @@
 					<g:each in="${updateInstanceList}" status="i" var="updateInstance">
 						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 							<td><g:link controller="location" action="show" id="${updateInstance.location.id}">${fieldValue(bean: updateInstance, field: "location")}</g:link></td>
-							<td><g:link controller="state" action="show" id="${updateInstance.state.id}">${fieldValue(bean: updateInstance, field: "state")}</g:link></td>
+							<td><g:link controller="state" action="show" id="${updateInstance.state.id}" class="state-${updateInstance.state.toString().replace(" ","-")}">${fieldValue(bean: updateInstance, field: "state")}</g:link></td>
 							<td>${fieldValue(bean: updateInstance, field: "occurredBy")}</td>
 							<td><g:formatDate date="${updateInstance.occurredAt}" format="MMM dd yyyy" /></td>
 							<td>${fieldValue(bean: updateInstance, field: "note")}</td>

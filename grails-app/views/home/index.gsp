@@ -2,6 +2,7 @@
 	import = "harbor.Asset"
 	import = "harbor.Type"
 	import = "harbor.Location" 
+	import = "harbor.State"
 %>
 <html>
 <head>
@@ -12,27 +13,52 @@
     google.load("visualization", "1", {packages:["corechart"]});
     google.setOnLoadCallback(drawChart);
     function drawChart() {
-	    var data = google.visualization.arrayToDataTable([      
+	    var dataType = google.visualization.arrayToDataTable([      
 	      ['Model', 'Count'],
 	      <%
 	        def types = Type.list()
 	        types.each() { type ->
 	        def asset = Asset.findAllByType(type)
 	        if (asset.size() > 0) {
-	        println "['${type.type}', " + asset.size() + "],"
+	        println "['${type.type} (${asset.size()})', " + asset.size() + "],"
 	        }
 	      }
 	      %>
 	    ]);
-	
-	    var options = {
-	      title: 'Assets by Model',
+
+	    var dataState = google.visualization.arrayToDataTable([      
+  	      ['State', 'Count'],
+  	      <%
+  	        def states = State.list(sort:"id", order:"asc")
+  	        states.each() { state ->
+  	        def assets = Asset.getAssetsByState(state)
+  	        if (assets.size() > 0) {
+  	        println "['${state.state} (${assets.size()})', " + assets.size() + "],"
+  	        }
+  	      }
+  	      %>
+  	    ]);
+
+	    var typeOptions = {
+  	      title: 'Assets by Type',
+  	      is3D: true,
+  	      chartArea:{left:20,top:30,width:"100%",height:"100%"},
+  	   	 titleTextStyle: {fontSize: 18}
+  	    };
+		
+	    var stateOptions = {
+	      title: 'Assets by State',
 	      is3D: true,
-	      chartArea:{left:20,top:0,width:"100%",height:"75%"}
+	      chartArea:{left:20,top:30,width:"100%",height:"100%"},
+	      colors:['#00a81c', '#ffc000', '#900000', '#1e3f6c', '#e60000', '#a0a0a0', '#009aac', 'black', '#5f5f5f'],
+	      titleTextStyle: {fontSize: 18}
 	    };
 	
-	    var chart = new google.visualization.PieChart(document.getElementById('type-chart'));
-	    chart.draw(data, options);
+	    var chart1 = new google.visualization.PieChart(document.getElementById('type-chart'));
+	    chart1.draw(dataType, typeOptions);
+	    var chart2 = new google.visualization.PieChart(document.getElementById('state-chart'));
+	    chart2.draw(dataState, stateOptions);
+	    
 	
 	    $(document).ready(function () {
 	      $(window).resize(function(){
@@ -41,8 +67,10 @@
 	    });
 	    
 	    function resize() {
-	      var chart = new google.visualization.PieChart(document.getElementById('type-chart'));
-	      chart.draw(data, options);
+	      var chart1 = new google.visualization.PieChart(document.getElementById('type-chart'));
+	      chart1.draw(dataType, typeOptions);
+	      var chart2 = new google.visualization.PieChart(document.getElementById('state-chart'));
+		  chart2.draw(dataState, stateOptions);
 	    }
     }
 </script>
@@ -56,7 +84,14 @@
 				${flash.message}
 			</div>
 		</g:if>
-		<div id="type-chart" style="width:100%; height: 500px; z-index:0;"></div>
+		<div id="type-chart" style="width:47%; height: 320px; float:left;"></div>
+		<div id="state-chart" style="width:47%; height: 320px; float:right;"></div>
+		<div id="stats" style="clear:both; padding: 20px;">
+			<h3>Total Assets: ${Asset.list().size()}</h3><br>
+			<h3>Total Locations: ${Location.list().size()}</h3><br>
+			<h3>Total States: ${State.list().size()}</h3><br>
+			<h3>Total Types: ${Type.list().size()}</h3>
+		</div>
 		</div>
 	<div id="options">
 		<g:render template="/home/sidebar" />
