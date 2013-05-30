@@ -1,5 +1,6 @@
 
 <%@ page import="harbor.Asset" %>
+<%@ page import="harbor.State" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -15,17 +16,18 @@
 		<div id="asset-top">
 			<div id="asset-left">
 				<ol class="property-list asset">
+					<img src="/harbor/images/laptop.png" width="64" height="64" style="float:left;padding-right:10px;padding-top:10px;"/>
 					<li class="fieldcontain">
 						<span id="hubId-label" class="property-label"><g:message code="asset.hubId.label" /></span>
-						<span class="property-value"><h3><g:fieldValue bean="${assetInstance}" field="hubId"/></h3></span>
+						<span class="property-value"><b><g:fieldValue bean="${assetInstance}" field="hubId"/></b></span>
+					</li>
+					<li class="fieldcontain">
+						<span id="type-label" class="property-label"><g:message code="asset.type.label" /></span>
+						<span class="property-value"><g:link controller="asset" action="listByType" id="${assetInstance?.type?.id}" style="font-size:70%;">${assetInstance?.type?.encodeAsHTML()}</g:link></span>
 					</li>
 					<li class="fieldcontain">
 						<span id="serviceTag-label" class="property-label"><g:message code="asset.serviceTag.label" /></span>
 						<span class="property-value"><g:fieldValue bean="${assetInstance}" field="serviceTag"/></span>
-					</li>
-					<li class="fieldcontain">
-						<span id="type-label" class="property-label"><g:message code="asset.type.label" /></span>
-						<span class="property-value"><g:link controller="asset" action="listByType" id="${assetInstance?.type?.id}">${assetInstance?.type?.encodeAsHTML()}</g:link></span>
 					</li>
 				</ol>
 			</div>
@@ -70,9 +72,6 @@
 					</g:each>
 					</tbody>
 				</table>
-				<div class="pagination">
-					<g:paginate total="${updateInstanceList.size()}" />
-				</div>
 			</div>
 		</div>
 	</div>

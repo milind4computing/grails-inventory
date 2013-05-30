@@ -38,6 +38,9 @@
 							<td><g:link controller="location" action="show" id="${asset.location.id}">${asset.location}</g:link></td>
 						</tr>
 						</g:if>
+						<g:else>
+							<% continue %>
+						</g:else>
 					</g:each>
 					</tbody>
 				</table>

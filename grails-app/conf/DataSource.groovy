@@ -24,20 +24,37 @@ environments {
         }
     }
     production {
-        dataSource {
-            dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
-            pooled = true
-            properties {
-               maxActive = -1
-               minEvictableIdleTimeMillis=1800000
-               timeBetweenEvictionRunsMillis=1800000
-               numTestsPerEvictionRun=3
-               testOnBorrow=true
-               testWhileIdle=true
-               testOnReturn=true
-               validationQuery="SELECT 1"
-            }
-        }
+//        dataSource {
+//            dbCreate = "update"
+//            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+//            pooled = true
+//            properties {
+//               maxActive = -1
+//               minEvictableIdleTimeMillis=1800000
+//               timeBetweenEvictionRunsMillis=1800000
+//               numTestsPerEvictionRun=3
+//               testOnBorrow=true
+//               testWhileIdle=true
+//               testOnReturn=true
+//               validationQuery="SELECT 1"
+//            }
+//        }
+		
+		dataSource { 
+			dbCreate = "update"  // Uncomment to modify tables
+			url = "jdbc:mysql://localhost:3306/harborv2"
+			driverClassName = "com.mysql.jdbc.Driver"
+			username = "root"
+			password = "root"
+			properties {
+				maxActive = 100
+				maxIdle = 25
+				minIdle = 5
+				initialSize = 10
+				minEvictableIdleTimeMillis = 60000
+				timeBetweenEvictionRunsMillis = 60000
+				maxWait = 10000
+			}
+		}
     }
 }

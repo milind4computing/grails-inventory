@@ -13,4 +13,8 @@ class State {
 	String toString() {
 		state
 	}
+	
+	static ArrayList<State> getStates() {
+		State.findAllByStateNotEqual("Issued")
+	}
 }

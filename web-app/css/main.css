@@ -35,7 +35,7 @@ body {
 	overflow-x: hidden; /* prevents box-shadow causing a horizontal scrollbar in firefox when viewport < 960px wide */
 	min-width: 785px;
 	-webkit-font-smoothing: antialiased;
-	/* font-size:90%; */
+	font-size:1em;
 }
 
 
@@ -204,16 +204,22 @@ img {
 	margin: 20px 20px 0px;
 }
 
-#update-asset {
-	width:260px;
-	float:right;
-	padding: 20px;
+#list-client {
+	margin: 20px 20px 0px;
 }
 
 #list-update {
 	padding-top: 20px;
 	margin: 0 20px;
 }
+
+#update-asset {
+	width:260px;
+	float:right;
+	padding: 20px;
+}
+
+
 
 #update-asset .fieldcontain label,
 #update-asset .fieldcontain .property-label {
@@ -401,10 +407,36 @@ fieldset,
 	zoom: 1;
 }
 
+#create-client fieldset, 
+#create-client .property-list {
+	padding: 0.3em 1.8em 1.25em; 
+	border: none;
+	min-width: 345px;
+	margin-left:20px;
+}
+
+
+#create-client .property-list .fieldcontain {
+	list-style: none;
+	overflow: hidden;
+	zoom: 1;
+}
+
+#create-client .fieldcontain label,
+#create-client .fieldcontain .property-label {
+	color: #666;
+	text-align: left;
+	width: 30%;
+}
 
 #asset-left fieldset, .property-list {
 	width: 280px;
 }
+
+#show-client fieldset, #show-client .property-list {
+	width: 400px;
+}
+
 
 .property-list .fieldcontain {
 	list-style: none;
@@ -420,7 +452,7 @@ fieldset,
 .fieldcontain .property-label {
 	color: #666;
 	text-align: left;
-	width: 40%;
+	width: 30%;
 }
 
 #options .fieldcontain label,

@@ -12,6 +12,10 @@ class Location {
 		specific()
     }
 	
+	static mapping = {
+		table "asset_location"
+	}
+	
 	String toString() {
 		"${location} ${specific}"
 	}

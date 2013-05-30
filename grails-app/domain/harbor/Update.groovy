@@ -19,6 +19,10 @@ class Update {
 		note(maxSize:1000, nullable:true)
     }
 	
+	static mapping = {
+		table "asset_update"
+	}
+	
 	String toString() {
 		occurredAt.toString()
 	}

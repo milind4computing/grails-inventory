@@ -1,3 +1,4 @@
+import harbor.Client;
 import harbor.Location;
 import harbor.State;
 import harbor.User;
@@ -49,6 +50,9 @@ class BootStrap {
 		
 		println "Creating users..."
 		new User(username:"cscarborough", password: User.hashPassword("password"), firstName:"Casey", lastName:"Scarborough", isAdmin:true, updates:[:]).save(failOnError:true)
+		new User(username:"cread", password: User.hashPassword("password"), firstName:"Charles", lastName:"Read", isAdmin:true, updates:[:]).save(failOnError:true)
+		new User(username:"user1", password: User.hashPassword("password"), firstName:"User", lastName:"One", isAdmin:false, updates:[:]).save(failOnError:true)
+		new User(username:"user2", password: User.hashPassword("password"), firstName:"User", lastName:"Two", isAdmin:false, updates:[:]).save(failOnError:true)
 		
 		println "Creating types..."
 		new Type(type:"Apple MacBook Pro").save(failOnError:true)
@@ -89,6 +93,35 @@ class BootStrap {
 		Asset.add("10013", "casd765h", "20", "5", "1", "Auto-creation.");
 		Asset.add("10014", "svsd3234", "20", "8", "1", "Auto-creation.");
 		Asset.add("10015", "234wsfdf", "9", "4", "1", "Auto-creation.");
+		Asset.add("10016", "6TagwTK4", "7", "3", "1", "Auto-creation.");
+		Asset.add("10017", "asPrtrw3K", "12", "8", "1", "Auto-creation.");
+		Asset.add("10018", "1ass23ty", "13", "5", "1", "Auto-creation.");
+		Asset.add("10019", "fgh46f6h", "5", "5", "1", "Auto-creation.");
+		Asset.add("10020", "a4g3erg", "9", "4", "1", "Auto-creation.");
+		Asset.add("10021", "sgge5rg4", "9", "4", "1", "Auto-creation.");
+		Asset.add("10022", "seg4egeg4", "15", "5", "1", "Auto-creation.");
+		Asset.add("10023", "segj686", "18", "4", "1", "Auto-creation.");
+		Asset.add("10024", "kytud46", "19", "7", "1", "Auto-creation.");
+		Asset.add("10025", "srth34t5", "11", "7", "1", "Auto-creation.");
+		Asset.add("10026", "35635634f", "10", "6", "1", "Auto-creation.");
+		Asset.add("10027", "hfgjty85", "9", "4", "1", "Auto-creation.");
+		Asset.add("10028", "yw455y56h", "16", "5", "1", "Auto-creation.");
+		Asset.add("10029", "54ywtrh", "4", "8", "1", "Auto-creation.");
+		Asset.add("10030", "hrt67687", "1", "4", "1", "Auto-creation.");
+		
+		println "Creating clients..."
+		new Client(username: "cscarborough", firstName: "Casey", lastName: "Scarborough", 
+			phone: "770-123-4567", email: "casey@caseyscarborough.com", office:"", 
+			department:"", description:"").save(failOnError:true)
+		new Client(username: "cread", firstName: "Charles", lastName: "Read", 
+			phone: "770-123-4567", email: "charles@charlesread.com", office:"", 
+			department:"", description:"").save(failOnError:true)
+		new Client(username: "jdoe", firstName: "John", lastName: "Doe", 
+			phone: "770-123-4567", email: "john@johndoe.com", office:"", 
+			department:"", description:"").save(failOnError:true)
+		new Client(username: "jdoe2", firstName: "Jane", lastName: "Doe", 
+			phone: "770-123-4567", email: "jane@janedoe.com", office:"", 
+			department:"", description:"").save(failOnError:true)
     }
     def destroy = {
     }

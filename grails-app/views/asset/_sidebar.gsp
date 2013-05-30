@@ -1,11 +1,24 @@
 <g:if test="${controllerName=="asset"}">
 	<g:if test="${session.user.isAdmin}">
-		<div style="padding-bottom:20px;"><g:link action="create">New Asset</g:link></div>
+		<div style="padding-bottom:10px;"><g:link action="create">New Asset</g:link></div>
 	</g:if>
 </g:if>
-
-
+<br>
 <g:if test="${controllerName=="asset" && actionName=="show"}">
+<g:if test="${assetInstance.getState().state != "Issued"}">
+	<h2>Distribute Asset</h2>
+	<g:form action="distribute">
+		<div class="fieldcontain ${hasErrors(bean: updateInstance, field: 'client', 'error')} required">
+			<label for="client">
+				<g:message code="Client.username.label" default="Client" />
+			</label>
+			<g:select id="client" name="clientId" from="${harbor.Client.list()}" optionKey="id" required="" value="${}" class="many-to-one"/>
+		</div><br>
+		<g:hiddenField name="hubId" value="${params.id}" />
+		<g:submitButton name="distribute" class="update" value="${message(code: 'default.button.distribute.label', default: 'Distribute')}" />
+	</g:form><br><br>
+</g:if>
+
 <h2>Update Asset</h2>
 <g:form action="update">
 	<div class="fieldcontain ${hasErrors(bean: updateInstance, field: 'location', 'error')} required">
@@ -19,7 +32,7 @@
 		<label for="state">
 			<g:message code="update.state.label" default="State" />
 		</label>
-		<g:select id="state" name="stateId" from="${harbor.State.list()}" optionKey="id" required="" value="${updateInstance?.state?.id}" class="many-to-one"/>
+		<g:select id="state" name="stateId" from="${harbor.State.getStates()}" optionKey="id" required="" value="${updateInstance?.state?.id}" class="many-to-one"/>
 	</div>
 	
 	<div class="fieldcontain ${hasErrors(bean: updateInstance, field: 'note', 'error')} ">

@@ -26,7 +26,7 @@
 				<ul>
 					<li><g:link controller="home">Home</g:link></li>
 					<li><g:link controller="asset" action="search">Assets</g:link></li>
-					<li><g:link controller="client" action="list">Clients</g:link></li>
+					<li><g:link controller="client" action="search">Clients</g:link></li>
 					<g:if test="${session.user}">
 						<li><g:link controller="session" action="logout">Logout</g:link></li>
 					</g:if><g:else>
