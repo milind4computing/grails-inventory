@@ -1,5 +1,6 @@
 <%@ page import="harbor.Location" %>
-<%@ page import="harbor.Update" %>
+<%@ page import="harbor.Asset" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -14,8 +15,8 @@
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<% def updates = Update.findAllByLocation(locationInstance, [max:25, sort:"occurredAt", order:"desc"]) %>			
-			<g:if test="${locationInstance?.updates}">
+			<% def assets = Asset.list() %>			
+			<g:if test="${locationInstance?.location}">
 				<table>
 					<thead>
 						<tr>
@@ -27,15 +28,16 @@
 						</tr>
 					</thead>
 					<tbody>
-					<g:each in="${updates}" status="i" var="update">
+					<g:each in="${assets}" status="i" var="asset">
+						<g:if test="${asset.location == locationInstance}">
 						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-						
-							<td><g:link controller="asset" action="show" id="${update.asset.hubId}">${update.asset.hubId}</g:link></td>
-							<td>${update.asset.serviceTag}</td>
-							<td><g:link controller="asset" action="listByType" id="${update.asset.type.id}">${update.asset.type}</g:link></td>
-							<td><g:link controller="state" action="show" id="${update.state.id}">${update.state}</g:link></td>
-							<td><g:link controller="location" action="show" id="${update.location.id}">${update.location}</g:link></td>
+							<td><g:link controller="asset" action="show" id="${asset.hubId}">${asset.hubId}</g:link></td>
+							<td>${asset.serviceTag}</td>
+							<td><g:link controller="asset" action="listByType" id="${asset.type.id}">${asset.type}</g:link></td>
+							<td><g:link controller="state" action="show" id="${asset.state.id}" class="state-${asset.state.toString().replace(" ","-")}">${asset.state}</g:link></td>
+							<td><g:link controller="location" action="show" id="${asset.location.id}">${asset.location}</g:link></td>
 						</tr>
+						</g:if>
 					</g:each>
 					</tbody>
 				</table>
