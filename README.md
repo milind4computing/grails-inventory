@@ -1,7 +1,7 @@
 Grails Inventory Application
 ============================
 
-This application is an inventory application written using the Grails web framework. It keeps track of assets owned by a company by recording the asset's state, location, description, and who the asset is assigned to.
+This application is an inventory application written using the Grails web framework. It keeps track of assets owned by a company by recording the asset's state, location, description, and what client the asset is issue to. It handles user authentication, as well as authorization. It keeps track of every update applied to a piece of equipment as well.
 
 Dependencies
 ------------
@@ -9,6 +9,33 @@ Dependencies
 - Java Development Kit
 - Groovy 2.1.3
 - Grails 2.2.2
+- MySQL 5 (can be removed to use H2)
+
+Setting Up the Database
+-----------------------
+
+The application connects to a localhost MySQL database. The settings for the database are located at /grails-app/conf/DataSource.groovy. For a simpler setup or to just check out the application, you can comment out the MySQL data source and uncomment out the H2 sections (H2 is used by default in Grails and is held in memory. It requires no additional setup). Here are the data source settings currently being used for MySQL:
+
+```groovy
+// MySQL Settings
+
+dataSource {
+	dbCreate = "update"
+	url = "jdbc:mysql://localhost:3306/harbor"
+	driverClassName = "com.mysql.jdbc.Driver"
+	username = "root"
+	password = "root"
+	properties {
+		maxActive = 100
+		maxIdle = 25
+		minIdle = 5
+		initialSize = 10
+		minEvictableIdleTimeMillis = 60000
+		timeBetweenEvictionRunsMillis = 60000
+		maxWait = 10000
+	}
+}
+```
 
 Running the Application
 -----------------------
