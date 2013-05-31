@@ -12,9 +12,7 @@ class ClientController {
 
     def list(Integer max) {
         def clients	
-		println params
 		if(params.username) {
-			println "yeah"
 			clients = Client.findAllByUsernameLike("%${params.username}%", [max:25])
 			if (clients == null) {
 				flash.message = "No clients found for Username: ${params.username}"

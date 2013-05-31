@@ -43,7 +43,9 @@
   	      title: 'Assets by Type',
   	      is3D: true,
   	      chartArea:{left:20,top:30,width:"100%",height:"100%"},
-  	   	 titleTextStyle: {fontSize: 18}
+  	   	 titleTextStyle: {fontSize: 18},
+   	   	 allowHtml: true
+   	   	 
   	    };
 		
 	    var stateOptions = {
@@ -51,7 +53,8 @@
 	      is3D: true,
 	      chartArea:{left:20,top:30,width:"100%",height:"100%"},
 	      colors:['#00a81c', '#ffc000', '#900000', '#1e3f6c', '#e60000', '#a0a0a0', '#009aac', 'black', '#5f5f5f'],
-	      titleTextStyle: {fontSize: 18}
+	      titleTextStyle: {fontSize: 18},
+	      allowHtml: true
 	    };
 	
 	    var chart1 = new google.visualization.PieChart(document.getElementById('type-chart'));

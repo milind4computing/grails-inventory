@@ -8,12 +8,12 @@
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<div id="show-client" class="content scaffold-show" role="main">
+		<div id="main-content" class="content scaffold-show" role="main">
 			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<ol class="property-list client" style="width:450px; margin-left:20px;">
+			<ol class="property-list client" style="width:450px; margin-left:20px; margin-top:20px;">
 			
 				<g:if test="${clientInstance?.username}">
 				<li class="fieldcontain">
@@ -99,6 +99,9 @@
 				</g:if>
 			
 			</ol>
+		</div>
+		<div id="options">
+			<g:render template="/client/sidebar" />
 		</div>
 	</body>
 </html>
