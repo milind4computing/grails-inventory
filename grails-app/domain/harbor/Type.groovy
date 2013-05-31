@@ -8,6 +8,10 @@ class Type {
 		type(blank:false)
     }
 	
+	static mapping = {
+		table "asset_type"
+	}
+	
 	String toString() {
 		type
 	}

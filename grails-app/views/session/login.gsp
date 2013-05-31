@@ -22,7 +22,12 @@
 			<td><g:passwordField name="password" value='' /></td>
 		<tr>
 		<g:hiddenField name="rc" value="${params.rc}"/>
-		<g:hiddenField name="ra" value="${params.ra}"/>
+		<g:if test="${params.ra}">
+			<g:hiddenField name="ra" value="${params.ra}"/>
+		</g:if>
+		<g:if test="${params.rid}">
+			<g:hiddenField name="rid" value="${params.rid}"/>
+		</g:if>
 		</table>
 		<g:actionSubmit class="button" value="Login" action="handleLogin" />
 	</g:form>

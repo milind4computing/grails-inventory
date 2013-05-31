@@ -31,7 +31,9 @@ class SessionController {
 		} else {
 			session.user = user
 			flash.message = "Login successful! Resuming..."
-			if(params.rc && params.ra) {
+			if (params.rc && params.ra && params.rid) {
+				redirect(controller:params.rc, action:params.ra, id: params.rid)
+			} else if(params.rc && params.ra) {
 				redirect(controller:params.rc, action:params.ra)
 			} else {
 				redirect(controller:"home")

@@ -8,7 +8,7 @@ class SecurityFilters {
 				if(!session.user
 					&& !controllerName.equals("session")) {
 					flash.message = "Please login first."
-					forward(controller:"session", action:"login", params:[rc: params.controller, ra: params.action, id: params.id])
+					forward(controller:"session", action:"login", params:[rc: params.controller, ra: params.action, rid: params.id])
 					return
 				}
 

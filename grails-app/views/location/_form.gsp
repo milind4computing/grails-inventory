@@ -10,12 +10,12 @@
 	<g:textField name="location" required="" value="${locationInstance?.location}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: locationInstance, field: 'specific', 'error')} ">
-	<label for="specific">
-		<g:message code="location.specific.label" default="Specific" />
+<div class="fieldcontain ${hasErrors(bean: locationInstance, field: 'moreSpecific', 'error')} ">
+	<label for="moreSpecific">
+		<g:message code="location.moreSpecific.label" default="moreSpecific" />
 		
 	</label>
-	<g:textField name="specific" value="${locationInstance?.specific}"/>
+	<g:textField name="moreSpecific" value="${locationInstance?.moreSpecific}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: locationInstance, field: 'updates', 'error')} ">

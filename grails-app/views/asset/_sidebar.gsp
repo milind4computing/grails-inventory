@@ -12,7 +12,7 @@
 			<label for="client">
 				<g:message code="Client.username.label" default="Client" />
 			</label>
-			<g:select id="client" name="clientId" from="${harbor.Client.list()}" optionKey="id" required="" value="${}" class="many-to-one"/>
+			<g:select id="client" name="clientId" from="${harbor.Client.list()}" optionKey="id" required="" value="${harbor.Client.get(1)}" class="many-to-one"/>
 		</div><br>
 		<g:hiddenField name="hubId" value="${params.id}" />
 		<g:submitButton name="distribute" class="update" value="${message(code: 'default.button.distribute.label', default: 'Distribute')}" />
@@ -25,7 +25,7 @@
 		<label for="location">
 			<g:message code="update.location.label" default="Location" />
 		</label>
-		<g:select id="location" name="locationId" from="${harbor.Location.list()}" optionKey="id" required="" value="${updateInstance?.location?.id}" class="many-to-one"/>
+		<g:select id="location" name="locationId" from="${harbor.Location.list()}" optionKey="id" required="" value="${assetInstance?.location?.id}" class="many-to-one"/>
 	</div>
 	
 	<div class="fieldcontain ${hasErrors(bean: updateInstance, field: 'state', 'error')} required">

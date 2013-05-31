@@ -26,7 +26,7 @@
 					
 						<g:sortableColumn property="location" title="${message(code: 'location.location.label', default: 'Location')}" />
 					
-						<g:sortableColumn property="specific" title="${message(code: 'location.specific.label', default: 'Specific')}" />
+						<g:sortableColumn property="moreSpecific" title="${message(code: 'location.moreSpecific.label', default: 'moreSpecific')}" />
 					
 					</tr>
 				</thead>
@@ -36,7 +36,7 @@
 					
 						<td><g:link action="show" id="${locationInstance.id}">${fieldValue(bean: locationInstance, field: "location")}</g:link></td>
 					
-						<td>${fieldValue(bean: locationInstance, field: "specific")}</td>
+						<td>${fieldValue(bean: locationInstance, field: "moreSpecific")}</td>
 					
 					</tr>
 				</g:each>
