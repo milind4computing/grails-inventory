@@ -7,26 +7,26 @@ class StateController {
     static allowedMethods = [save: "POST", update: "POST", delete: ["POST","GET"]]
 
     def index() {
-        if(session.user && session.user.isAdmin) {
+        if(session.user && session.user.permissions.contains("admin")) {
 			redirect(action: "list", params: params)
 		}
     }
 
     def list(Integer max) {
-		if(session.user && session.user.isAdmin) {
+		if(session.user && session.user.permissions.contains("admin")) {
 	        params.max = Math.min(max ?: 10, 100)
 	        [stateInstanceList: State.list(params), stateInstanceTotal: State.count()]
 		}
     }
 
     def create() {
-		if(session.user && session.user.isAdmin) {
+		if(session.user && session.user.permissions.contains("admin")) {
 			[stateInstance: new State(params)]
 		}
     }
 
     def save() {
-		if(session.user && session.user.isAdmin) {
+		if(session.user && session.user.permissions.contains("admin")) {
 	        def stateInstance = new State(params)
 	        if (!stateInstance.save(flush: true)) {
 	            render(view: "create", model: [stateInstance: stateInstance])
@@ -50,7 +50,7 @@ class StateController {
     }
 
     def edit(Long id) {
-		if(session.user && session.user.isAdmin) {
+		if(session.user && session.user.permissions.contains("admin")) {
 	        def stateInstance = State.get(id)
 	        if (!stateInstance) {
 	            flash.message = message(code: 'default.not.found.message', args: [message(code: 'state.label', default: 'State'), id])
@@ -63,7 +63,7 @@ class StateController {
     }
 
     def update(Long id, Long version) {
-		if(session.user && session.user.isAdmin) {
+		if(session.user && session.user.permissions.contains("admin")) {
 	        def stateInstance = State.get(id)
 	        if (!stateInstance) {
 	            flash.message = message(code: 'default.not.found.message', args: [message(code: 'state.label', default: 'State'), id])
@@ -94,9 +94,9 @@ class StateController {
     }
 
     def delete(Long id) {
-		if(session.user && session.user.isAdmin) {
+		if(session.user && session.user.permissions.contains("admin")) {
 	        def stateInstance = State.get(id)
-			def assetsByState = Asset.getAssetsByState(stateInstance);
+			def assetsByState = Asset.getAssetsByState(stateInstance, 25);
 			if(assetsByState.size() != 0) {
 				flash.message = "Unable to remove state. It is currently in use."
 				redirect(controller:"state", action:"list")

@@ -43,7 +43,7 @@ class AssetController {
     }
 
     def create() {
-		if(session.user && session.user.isAdmin) {
+		if(session.user && session.user.permissions.contains("admin")) {
 			[assetInstance: new Asset(params)]
 		} else {
 			flash.message = "You do not have rights to create assets."
@@ -64,7 +64,7 @@ class AssetController {
 	}
 
     def save() {
-		if(session.user && session.user.isAdmin) {
+		if(session.user && session.user.permissions.contains("admin")) {
 			if(params.hubId.matches("[0-9]+")) {
 				try {
 					Asset.add(params.hubId, params.serviceTag, params.type.id, params.location.id, session.user.id.toString(), "Initial creation.")

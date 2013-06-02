@@ -86,7 +86,7 @@
 						<td><g:link controller="location" action="show" id="${updateInstance.location.id}">${fieldValue(bean: updateInstance, field: "location")}</g:link></td>
 						<td><g:link controller="state" action="show" id="${updateInstance.state.id}" class="state-${updateInstance.state.toString().replace(" ","-")}">${fieldValue(bean: updateInstance, field: "state")}</g:link></td>
 						<td>${fieldValue(bean: updateInstance, field: "occurredBy")}</td>
-						<td><g:formatDate date="${updateInstance.occurredAt}" format="MMM dd yyyy" /></td>
+						<td><g:formatDate date="${updateInstance.occurredAt}" format="MMMMM dd, yyyy" /></td>
 						<td>${fieldValue(bean: updateInstance, field: "note")}</td>
 					</tr>
 				</g:each>

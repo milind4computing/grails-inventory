@@ -1,7 +1,10 @@
 /* FONT STACK */
+@import url(http://fonts.googleapis.com/css?family=Noto+Sans);
+
 body,
 input, select, textarea {
-	font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	/*font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;*/ 
+	font-family: 'Noto Sans', sans-serif;
 	font-weight: normal;
 }
 
@@ -34,8 +37,7 @@ body {
 	width: 100%;
 	overflow-x: hidden; /* prevents box-shadow causing a horizontal scrollbar in firefox when viewport < 960px wide */
 	min-width: 785px;
-	-webkit-font-smoothing: antialiased;
-	font-size:1em;
+	font-size:0.9em;
 }
 
 
@@ -54,7 +56,8 @@ body {
 }
 
 a, a:visited {
-	color: #1E3F6C;
+	/* color: #1E3F6C; */
+	color: #3E5F8C;
 	text-decoration: none;
 }
 
@@ -264,14 +267,9 @@ img {
 	text-align:left;
 }
 
-#options a {
-	color: #1E3F6C;
-	text-decoration: none;
-}
-
 #options a:hover,
 #options a:visited {
-	color: #1E3F6C;
+	color: #3E5F8C;
 	text-decoration: none;
 }
 
@@ -408,7 +406,7 @@ fieldset,
 	padding: 0.3em 1.0em 1.25em; 
 	border: none;
 	background: #eee;
-	width: 205px;
+	width: 230px;
 }
 
 #create-asset fieldset, 
@@ -450,6 +448,10 @@ fieldset,
 
 #asset-left fieldset, .property-list {
 	width: 280px;
+}
+
+#asset-right fieldset, #asset-right .property-list {
+	width: 190px;
 }
 
 #show-client fieldset, #show-client .property-list {
@@ -591,7 +593,7 @@ fieldset.embedded legend {
 }
 
 .message {
-	background: #f3f3ff;
+	background: #ecf6ff;
 	color: #006dba;
 }
 
@@ -725,7 +727,7 @@ th.desc a {
 }
 
 tr:hover {
-	background: #ccd6ff;
+	background: #ecf6ff;
 }
 
 

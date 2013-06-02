@@ -60,24 +60,34 @@ class Asset {
 	}
 	
 	// This is kind of hack-ish.
-	static Asset[] getAssetsByState(State state) {
+	static Asset[] getAssetsByState(State state, int max = Asset.list().size()) {
 		def assets = Asset.list();
 		ArrayList<Asset> assetsByState = new ArrayList<>();
+		def count = 0;
 		assets.each { asset ->
 			if(asset.state == state) {
 				assetsByState.add(asset)
+			}
+			count++;
+			if(count >= max) {
+				return assetsByState
 			}
 		}
 		assetsByState
 	}
 	
 	// This is kind of hack-ish.
-	static Asset[] getAssetsByLocation(Location location) {
+	static Asset[] getAssetsByLocation(Location location, int max = Asset.list().size()) {
 		def assets = Asset.list();
 		ArrayList<Asset> assetsByLocation = new ArrayList<>();
+		def count = 0;
 		assets.each { asset ->
 			if(asset.location == location) {
 				assetsByLocation.add(asset)
+			}
+			count++;
+			if(count >= max) {
+				return assetsByLocation
 			}
 		}
 		assetsByLocation

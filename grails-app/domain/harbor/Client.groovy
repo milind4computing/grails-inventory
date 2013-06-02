@@ -10,6 +10,9 @@ class Client {
 	String office
 	String department
 	String description
+	String memberOf
+	String distinguishedName
+	boolean inactive
 	
 	static hasMany = [assets: Asset]
 	
@@ -22,6 +25,9 @@ class Client {
 		office()
 		department()
 		description(maxSize:255)
+		memberOf(maxSize:1000)
+		distinguishedName()
+		inactive()
     }
 	
 	String toString() {

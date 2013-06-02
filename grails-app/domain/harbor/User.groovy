@@ -5,9 +5,11 @@ import org.apache.commons.codec.digest.DigestUtils;
 class User {
 	String username
 	String password
+	String permissions
 	String firstName
 	String lastName
-	boolean isAdmin = false
+	String email
+	String department
 	
 	static hasMany = [updates: Update]
 	
@@ -16,7 +18,9 @@ class User {
 		password(blank:false)
 		firstName(blank:false)
 		lastName(blank:false)
-		isAdmin()
+		permissions()
+		email()
+		department()
 	}
 	
 	String toString() {

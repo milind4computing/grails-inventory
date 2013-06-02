@@ -36,7 +36,7 @@
 							<td><g:link controller="asset" action="listByType" id="${asset.type.id}">${asset.type}</g:link></td>
 							<td><g:link controller="state" action="show" id="${asset.state.id}" class="state-${asset.state.toString().replace(" ","-")}">${asset.state}</g:link></td>
 							<td><g:link controller="location" action="show" id="${asset.location.id}">${asset.location}</g:link></td>
-						</tr>
+						</tr><g:if test="${i >= 25}"><% return %></g:if>
 						</g:if>
 						<g:else>
 							<% continue %>

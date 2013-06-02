@@ -34,6 +34,9 @@ stacktrace.log
 /target/
 /out/
 
+# Database dumps
+harbor.sql
+
 # Operating System Files
 .DS_Store
 .DS_Store?

@@ -12,7 +12,7 @@ class LocationController {
 		}
     }
     def list(Integer max) {
-		if(session.user && session.user.isAdmin) {
+		if(session.user && session.user.permissions.contains("admin")) {
 	        params.max = Math.min(max ?: 15, 100)
 	        [locationInstanceList: Location.list(params), locationInstanceTotal: Location.count()]
 		} else {
@@ -26,7 +26,7 @@ class LocationController {
     }
 
     def save() {
-		if(session.user && session.user.isAdmin) {
+		if(session.user && session.user.permissions.contains("admin")) {
 	        def locationInstance = new Location(params)
 	        if (!locationInstance.save(flush: true)) {
 	            render(view: "create", model: [locationInstance: locationInstance])
@@ -53,7 +53,7 @@ class LocationController {
     }
 
     def edit(Long id) {
-		if(session.user && session.user.isAdmin) {
+		if(session.user && session.user.permissions.contains("admin")) {
 			def locationInstance = Location.get(id)
 	        if (!locationInstance) {
 	            flash.message = message(code: 'default.not.found.message', args: [message(code: 'location.label', default: 'Location'), id])
@@ -97,9 +97,9 @@ class LocationController {
     }
 
     def delete(Long id) {
-		if(session.user && session.user.isAdmin) {
+		if(session.user && session.user.permissions.contains("admin")) {
 			def locationInstance = Location.get(id)
-			def assetsByLocation = Asset.getAssetsByLocation(locationInstance);
+			def assetsByLocation = Asset.getAssetsByLocation(locationInstance, 25);
 			if(assetsByLocation.size() != 0) {
 				flash.message = "Unable to remove location. It is currently in use."
 				redirect(controller:"location", action:"list")

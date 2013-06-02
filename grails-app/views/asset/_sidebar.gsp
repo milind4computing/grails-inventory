@@ -2,7 +2,7 @@
 <%@ page import="harbor.Location" %>
 
 <g:if test="${controllerName=="asset"}">
-	<g:if test="${session.user.isAdmin}">
+	<g:if test="${session.user.permissions.contains("admin")}">
 		<div style="padding-bottom:10px;"><g:link action="create">New Asset</g:link></div>
 	</g:if>
 </g:if>
