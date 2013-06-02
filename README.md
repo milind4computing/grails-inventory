@@ -37,6 +37,8 @@ dataSource {
 }
 ```
 
+To run the application using MySQL or H2, ensure that your database has been created with the name 'harbor' and the credentials are like the above settings, then uncomment the commented lines in the BootStrap.groovy file located at grails-app/conf/BootStrap.groovy. The application should then populate with some sample data on application start.
+
 Running the Application
 -----------------------
 
@@ -46,6 +48,6 @@ grails run-app
 ```
 You may also need to run a grails upgrade if you are using a newer version of Grails.
 
-After running the application, navigate to [http://localhost:8080/harbor][harbor] in your browser.
+After running the application, navigate to [http://localhost:8080/harbor][harbor] in your browser.  You can then log in using the username 'cscarborough' and the password 'password'.
 
 [harbor]: http://localhost:8080/harbor
