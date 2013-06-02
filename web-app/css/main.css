@@ -195,9 +195,17 @@ img {
 	padding-right: 20px;
 }
 
+#asset-top {
+	padding-bottom: 20px;
+}
+
 #show-asset {
 	float:left;
 	width:65%;
+}
+
+#list {
+	margin: 20px 20px 0px;
 }
 
 #list-asset {
@@ -209,7 +217,6 @@ img {
 }
 
 #list-update {
-	padding-top: 20px;
 	margin: 0 20px;
 }
 
@@ -231,6 +238,18 @@ img {
 	float:right;
 	width:30%;
 	min-width: 330px;
+}
+
+#distribute-asset {
+	float:left;
+	padding:1em 1em 20px;
+	margin: 20px;
+	background: #efefef;
+	display:none;
+}
+
+#distribute-asset tr:hover {
+	background: inherit;
 }
 
 #main-content {
@@ -715,13 +734,10 @@ tr:hover {
 .pagination {
 	border-top: 0;
 	margin: 0;
-	padding: 0.3em 0.2em;
 	text-align: center;
-	   -moz-box-shadow: 0 0 3px 1px #AAAAAA;
-	-webkit-box-shadow: 0 0 3px 1px #AAAAAA;
-	        box-shadow: 0 0 3px 1px #AAAAAA;
 	background-color: #EFEFEF;
 	width:100%;
+	padding: 5px 0;
 }
 
 .pagination a,

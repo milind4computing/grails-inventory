@@ -62,12 +62,24 @@ class Asset {
 	// This is kind of hack-ish.
 	static Asset[] getAssetsByState(State state) {
 		def assets = Asset.list();
-		ArrayList<Asset> assetsByState = new ArrayList<>();;
+		ArrayList<Asset> assetsByState = new ArrayList<>();
 		assets.each { asset ->
 			if(asset.state == state) {
 				assetsByState.add(asset)
 			}
 		}
 		assetsByState
+	}
+	
+	// This is kind of hack-ish.
+	static Asset[] getAssetsByLocation(Location location) {
+		def assets = Asset.list();
+		ArrayList<Asset> assetsByLocation = new ArrayList<>();
+		assets.each { asset ->
+			if(asset.location == location) {
+				assetsByLocation.add(asset)
+			}
+		}
+		assetsByLocation
 	}
 }

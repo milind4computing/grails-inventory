@@ -1,6 +1,9 @@
 $(document).ready(function() {
 	fadeErrors();
 	fadeMessages();
+	$("#distribute-asset-link").click(function() {
+		$("#distribute-asset").fadeIn(600);
+	});
 })
 
 function fadeErrors() {

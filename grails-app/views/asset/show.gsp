@@ -1,4 +1,3 @@
-
 <%@ page import="harbor.Asset" %>
 <%@ page import="harbor.State" %>
 <!DOCTYPE html>
@@ -7,6 +6,11 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'asset.label', default: 'Asset')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
+		<script type="text/javascript">
+		$(document).ready(function() {
+
+		});
+		</script>
 	</head>
 	<body>
 	<div id="main-content" class="content scaffold-show" role="main">
@@ -44,35 +48,50 @@
 						<span class="property-value"><g:link controller="state" action="show" id="${state.id}" class="state-${state.toString().replace(" ","-")}">${state.encodeAsHTML()}</g:link></span>
 					</li>
 				</ol>
-			</div>
+			</div><div class="clearBoth"></div>
 			<br>
-			
-			<% def updateInstanceList = assetInstance.getUpdateHistory() %>
-			<div id="list-update" class="content scaffold-list clearBoth" role="main">
-				<h2>Update History</h2>
-				<table>
-					<thead>
-						<tr>
-							<th><g:message code="update.location.label" default="Location" /></th>
-							<th><g:message code="update.state.label" default="State" /></th>
-							<th><g:message code="update.occurredBy.label" default="Occurred By" /></th>
-							<g:sortableColumn property="occurredAt" title="${message(code: 'update.occurredAt.label', default: 'Occurred At')}" />
-							<g:sortableColumn property="note" title="${message(code: 'update.note.label', default: 'Note')}" />
+			<div id="distribute-asset" class="clearBoth">
+				<div style="float:left;">
+					<h2>Search by Last Name</h2>
+					<g:form action="list" method="post">
+						<table>
+						<tr><td><g:textField name="username" value='${params.username}' /></td>
+						<td><g:actionSubmit class="button" value="Search" action="list" /></td>
 						</tr>
-					</thead>
-					<tbody>
-					<g:each in="${updateInstanceList}" status="i" var="updateInstance">
-						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-							<td><g:link controller="location" action="show" id="${updateInstance.location.id}">${fieldValue(bean: updateInstance, field: "location")}</g:link></td>
-							<td><g:link controller="state" action="show" id="${updateInstance.state.id}" class="state-${updateInstance.state.toString().replace(" ","-")}">${fieldValue(bean: updateInstance, field: "state")}</g:link></td>
-							<td>${fieldValue(bean: updateInstance, field: "occurredBy")}</td>
-							<td><g:formatDate date="${updateInstance.occurredAt}" format="MMM dd yyyy" /></td>
-							<td>${fieldValue(bean: updateInstance, field: "note")}</td>
-						</tr>
-					</g:each>
-					</tbody>
-				</table>
+						</table>
+						
+					</g:form>
+				</div>
+				<div>
+					
+				</div>
 			</div>
+		</div>
+		<% def updateInstanceList = assetInstance.getUpdateHistory() %>
+		<div id="list-update" class="content scaffold-list clearBoth" role="main">
+			<h2>Update History</h2>
+			<table>
+				<thead>
+					<tr>
+						<th><g:message code="update.location.label" default="Location" /></th>
+						<th><g:message code="update.state.label" default="State" /></th>
+						<th><g:message code="update.occurredBy.label" default="Occurred By" /></th>
+						<g:sortableColumn property="occurredAt" title="${message(code: 'update.occurredAt.label', default: 'Occurred At')}" />
+						<g:sortableColumn property="note" title="${message(code: 'update.note.label', default: 'Note')}" />
+					</tr>
+				</thead>
+				<tbody>
+				<g:each in="${updateInstanceList}" status="i" var="updateInstance">
+					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+						<td><g:link controller="location" action="show" id="${updateInstance.location.id}">${fieldValue(bean: updateInstance, field: "location")}</g:link></td>
+						<td><g:link controller="state" action="show" id="${updateInstance.state.id}" class="state-${updateInstance.state.toString().replace(" ","-")}">${fieldValue(bean: updateInstance, field: "state")}</g:link></td>
+						<td>${fieldValue(bean: updateInstance, field: "occurredBy")}</td>
+						<td><g:formatDate date="${updateInstance.occurredAt}" format="MMM dd yyyy" /></td>
+						<td>${fieldValue(bean: updateInstance, field: "note")}</td>
+					</tr>
+				</g:each>
+				</tbody>
+			</table>
 		</div>
 	</div>
 	<div id="options">

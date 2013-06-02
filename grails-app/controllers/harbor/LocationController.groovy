@@ -4,17 +4,21 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class LocationController {
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    static allowedMethods = [save: "POST", update: "POST", delete: ["POST","GET"]]
 
     def index() {
-        if(session.user) {
+        if(session.user && session.user) {
 			redirect(action: "list", params: params)
 		}
     }
-
     def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        [locationInstanceList: Location.list(params), locationInstanceTotal: Location.count()]
+		if(session.user && session.user.isAdmin) {
+	        params.max = Math.min(max ?: 15, 100)
+	        [locationInstanceList: Location.list(params), locationInstanceTotal: Location.count()]
+		} else {
+			flash.message = "You are not authorized to access that page."
+			redirect(controller:"home", action:"index")
+		}
     }
 
     def create() {
@@ -22,14 +26,19 @@ class LocationController {
     }
 
     def save() {
-        def locationInstance = new Location(params)
-        if (!locationInstance.save(flush: true)) {
-            render(view: "create", model: [locationInstance: locationInstance])
-            return
-        }
-
-        flash.message = message(code: 'default.created.message', args: [message(code: 'location.label', default: 'Location'), locationInstance.id])
-        redirect(action: "show", id: locationInstance.id)
+		if(session.user && session.user.isAdmin) {
+	        def locationInstance = new Location(params)
+	        if (!locationInstance.save(flush: true)) {
+	            render(view: "create", model: [locationInstance: locationInstance])
+	            return
+	        }
+	
+	        flash.message = message(code: 'default.created.message', args: [message(code: 'location.label', default: 'Location'), locationInstance.id])
+	        redirect(action: "show", id: locationInstance.id)
+		} else {
+			flash.message = "You are not authorized to access that page."
+			redirect(controller:"home", action:"index")
+		}
     }
 
     def show(Long id) {
@@ -44,14 +53,18 @@ class LocationController {
     }
 
     def edit(Long id) {
-        def locationInstance = Location.get(id)
-        if (!locationInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'location.label', default: 'Location'), id])
-            redirect(action: "list")
-            return
-        }
-
-        [locationInstance: locationInstance]
+		if(session.user && session.user.isAdmin) {
+			def locationInstance = Location.get(id)
+	        if (!locationInstance) {
+	            flash.message = message(code: 'default.not.found.message', args: [message(code: 'location.label', default: 'Location'), id])
+	            redirect(action: "list")
+	            return
+	        }
+			[locationInstance: locationInstance]
+		} else {
+			flash.message = "You are not authorized to access that page."
+			redirect(controller:"home", action:"index")
+		}
     }
 
     def update(Long id, Long version) {
@@ -84,21 +97,32 @@ class LocationController {
     }
 
     def delete(Long id) {
-        def locationInstance = Location.get(id)
-        if (!locationInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'location.label', default: 'Location'), id])
-            redirect(action: "list")
-            return
-        }
-
-        try {
-            locationInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'location.label', default: 'Location'), id])
-            redirect(action: "list")
-        }
-        catch (DataIntegrityViolationException e) {
-            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'location.label', default: 'Location'), id])
-            redirect(action: "show", id: id)
-        }
+		if(session.user && session.user.isAdmin) {
+			def locationInstance = Location.get(id)
+			def assetsByLocation = Asset.getAssetsByLocation(locationInstance);
+			if(assetsByLocation.size() != 0) {
+				flash.message = "Unable to remove location. It is currently in use."
+				redirect(controller:"location", action:"list")
+			} else {
+				if (!locationInstance) {
+					flash.message = message(code: 'default.not.found.message', args: [message(code: 'location.label', default: 'Location'), locationInstance])
+					redirect(action: "list")
+					return
+				}
+		
+				try {
+					locationInstance.delete(flush: true)
+					flash.message = message(code: 'default.deleted.message', args: [message(code: 'location.label', default: 'Location'), locationInstance])
+					redirect(action: "list")
+				}
+				catch (DataIntegrityViolationException e) {
+					flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'location.label', default: 'Location'), locationInstance])
+					redirect(action: "show", id: id)
+				}
+			}
+		} else {
+			flash.message = "You are not authorized to access that page."
+			redirect(controller:"home", action:"index")
+		}
     }
 }

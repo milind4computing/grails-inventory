@@ -2,10 +2,12 @@ package harbor
 
 class Type {
 	
-	String type
+	String make
+	String model
 	
     static constraints = {
-		type(blank:false)
+		make(blank:false)
+		model(blank:false)
     }
 	
 	static mapping = {
@@ -13,6 +15,6 @@ class Type {
 	}
 	
 	String toString() {
-		type
+		"${make} ${model}"
 	}
 }

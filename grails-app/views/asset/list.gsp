@@ -30,7 +30,7 @@
 						<td><g:link action="show" id="${assetInstance.hubId}">${fieldValue(bean: assetInstance, field: "hubId")}</g:link></td>
 						<td>${fieldValue(bean: assetInstance, field: "serviceTag")}</td>
 						<td><g:link controller="asset" action="listByType" id="${assetInstance.type.id}">${fieldValue(bean: assetInstance, field: "type")}</g:link></td>
-						<td><g:link controller="state" action="show" id="${assetInstance.getState().id}" class="state-${assetInstance.getState().toString().replace(" ","-")}">${assetInstance.getState()}</g:link></td>
+						<td><g:if test="${assetInstance.state}"><g:link controller="state" action="show" id="${assetInstance.getState().id}" class="state-${assetInstance.getState().toString().replace(" ","-")}">${assetInstance.getState()}</g:link></g:if></td>
 						<td><g:link controller="location" action="show" id="${assetInstance.getLocation().id}">${assetInstance.getLocation()}</g:link></td>
 					</tr>
 				</g:each>

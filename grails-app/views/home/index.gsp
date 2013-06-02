@@ -20,7 +20,7 @@
 	        types.each() { type ->
 	        def asset = Asset.findAllByType(type)
 	        if (asset.size() > 0) {
-	        println "['${type.type} (${asset.size()})', " + asset.size() + "],"
+	        println "['${type.make} ${type.model} (${asset.size()})', " + asset.size() + "],"
 	        }
 	      }
 	      %>
@@ -45,7 +45,6 @@
   	      chartArea:{left:20,top:30,width:"100%",height:"100%"},
   	   	 titleTextStyle: {fontSize: 18},
    	   	 allowHtml: true
-   	   	 
   	    };
 		
 	    var stateOptions = {
