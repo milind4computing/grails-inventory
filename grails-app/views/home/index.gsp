@@ -52,7 +52,7 @@
 	      title: 'Assets by State',
 	      is3D: true,
 	      chartArea:{left:20,top:30,width:"100%",height:"100%"},
-	      colors:['#00a81c', '#ffc000', '#900000', '#1e3f6c', '#e60000', '#a0a0a0', '#009aac', 'black', '#5f5f5f'],
+	      colors:['#00a81c', '#e60000', '#ffc000', 'black', '#a0a0a0', '#900000', '#1e3f6c', '#5f5f5f', '#009aac'],
 	      titleTextStyle: {fontSize: 18},
 	      allowHtml: true,
 	   	  fontName: 'Noto Sans'
@@ -88,8 +88,8 @@
 				${flash.message}
 			</div>
 		</g:if>
-		<div id="type-chart" style="width:47%; height: 320px; float:left;"></div>
-		<div id="state-chart" style="width:47%; height: 320px; float:right;"></div>
+		<div id="type-chart" style="width:49%; height: 320px; float:left;"></div>
+		<div id="state-chart" style="width:49%; height: 320px; float:right;"></div>
 		<div id="stats" style="clear:both; padding: 20px;">
 			<h3>Total Assets: ${Asset.list().size()}</h3><br>
 			<h3>Total Locations: ${Location.list().size()}</h3><br>
