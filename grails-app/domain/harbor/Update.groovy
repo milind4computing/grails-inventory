@@ -8,6 +8,7 @@ class Update {
 	Date occurredAt
 	User occurredBy
 	String note
+	boolean checkedOut
 	
 	static belongsTo = [Asset, Location, State, User]
 
@@ -17,24 +18,27 @@ class Update {
 		state()
 		occurredBy()
 		note(maxSize:1000, nullable:true)
+		checkedOut()
     }
 	
 	static mapping = {
 		table "asset_update"
+		checkedOut defaultValue: false
 	}
 	
 	String toString() {
 		occurredAt.toString()
 	}
 	
-	static void add(String hubId, String locationId, String stateId, String userId, String note) {
+	static void add(String hubId, String locationId, String stateId, String userId, String note, boolean checkedOut = false) {
 		def update = new Update(
 			asset: Asset.findByHubId(hubId),
 			location: Location.findById(locationId),
 			state: State.findById(stateId),
 			occurredAt: new Date(),
 			occurredBy: User.findById(userId),
-			note: note
+			note: note,
+			checkedOut: checkedOut
 		)
 		update.save()
 	}

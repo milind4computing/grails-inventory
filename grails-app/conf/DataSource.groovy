@@ -14,7 +14,7 @@ environments {
     development {
 		
 		dataSource {
-			dbCreate = "update"
+			dbCreate = "create-drop"
 			url = "jdbc:mysql://localhost:3306/harbor"
 			driverClassName = "com.mysql.jdbc.Driver"
 			username = "root"

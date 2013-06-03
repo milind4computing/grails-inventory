@@ -140,4 +140,23 @@ class AssetController {
     }
 	
 	def search() {}
+	
+	def distribute() {
+		def asset = Asset.findByHubId(params.hubId)
+		if(session.user && session.user.permissions.contains("admin")) {
+			def client = Client.findById(params.clientId)
+			def user = User.findById(session.user.id)
+			def distribution = asset.distribute(client, user, params.note)
+			if(distribution) {
+				flash.message = "Distribution successful."
+				redirect(action:"show", id:params.hubId)
+			} else {
+				flash.message = "Asset must be issuable to be distributed."
+				redirect(action:"show", id:params.hubId)
+			}
+		} else {
+			flash.message = "You lack privileges to perform this action."
+			redirect(action:"show", id:params.hubId)
+		}
+	}
 }

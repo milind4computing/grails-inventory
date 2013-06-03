@@ -59,8 +59,12 @@ class Asset {
 		getLatestUpdate().location
 	}
 	
-	// This is kind of hack-ish.
+	/*
+	 *  Class Methods
+	 */
+	
 	static Asset[] getAssetsByState(State state, int max = Asset.list().size()) {
+		// This is kind of hack-ish.
 		def assets = Asset.list();
 		ArrayList<Asset> assetsByState = new ArrayList<>();
 		def count = 0;
@@ -76,8 +80,8 @@ class Asset {
 		assetsByState
 	}
 	
-	// This is kind of hack-ish.
 	static Asset[] getAssetsByLocation(Location location, int max = Asset.list().size()) {
+		// This is kind of hack-ish.
 		def assets = Asset.list();
 		ArrayList<Asset> assetsByLocation = new ArrayList<>();
 		def count = 0;
@@ -91,5 +95,42 @@ class Asset {
 			}
 		}
 		assetsByLocation
+	}
+	
+	/*
+	 * Instance methods
+	 */
+	boolean distribute(Client client, User user, String note) {
+		if(issuable()) {
+			def update = new Update(
+				asset: this,
+				location: Location.findByLocation("Issued"),
+				state: State.findByState("Issued"),
+				occurredAt: new Date(),
+				occurredBy: User.get(user.id),
+				note: note
+			)
+			update.save(failOnError:true)
+			def loan = new Loan(
+				asset: this,
+				replacementAsset: null,
+				client: client,
+				occurredBy: user,
+				update: Update.get(update.id),
+				replacementUpdate: null,
+				loanAction: LoanAction.findByAction("Distribution"),
+				loanActionReason: null,
+				occurredAt: new Date(),
+				userDamage: false
+			)
+			loan.save(failOnError:true)
+			return true
+		} else {
+			return false
+		}
+	}
+	
+	boolean issuable() {
+		this.state == State.findByState("Issuable")
 	}
 }

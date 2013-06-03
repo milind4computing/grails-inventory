@@ -1,5 +1,6 @@
 <%@ page import="harbor.Asset" %>
 <%@ page import="harbor.State" %>
+<%@ page import="harbor.Loan" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -83,7 +84,13 @@
 				<tbody>
 				<g:each in="${updateInstanceList}" status="i" var="updateInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+						<g:if test="${updateInstance.state == State.findByState("Issued")}">
+						<% def loan = Loan.findByUpdate(updateInstance) %>
+						<td><g:link controller="client" action="show" id="${loan.client.id}">${fieldValue(bean: loan, field: "client")}</g:link></td>
+						</g:if>
+						<g:else>
 						<td><g:link controller="location" action="show" id="${updateInstance.location.id}">${fieldValue(bean: updateInstance, field: "location")}</g:link></td>
+						</g:else>
 						<td><g:link controller="state" action="show" id="${updateInstance.state.id}" class="state-${updateInstance.state.toString().replace(" ","-")}">${fieldValue(bean: updateInstance, field: "state")}</g:link></td>
 						<td>${fieldValue(bean: updateInstance, field: "occurredBy")}</td>
 						<td><g:formatDate date="${updateInstance.occurredAt}" format="MMMMM dd, yyyy" /></td>
