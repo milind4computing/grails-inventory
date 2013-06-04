@@ -23,6 +23,12 @@ class User {
 		department()
 	}
 	
+	static mapping = {
+		table "users"
+		id sqlType: "int"
+		version false
+	}
+	
 	String toString() {
 		username
 	}

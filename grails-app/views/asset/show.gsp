@@ -7,10 +7,11 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'asset.label', default: 'Asset')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
+		<g:javascript library="jquery" />
 		<script type="text/javascript">
-		$(document).ready(function() {
-
-		});
+		function showClient(element, index, array) {
+			$("div#client-results").append("<a>" + element.firstName + " " + element.lastName + "</a>&nbsp;&nbsp;&nbsp;");
+		}
 		</script>
 	</head>
 	<body>
@@ -42,7 +43,13 @@
 				<ol class="property-list asset">
 					<li class="fieldcontain">
 						<span id="location-label" class="property-label"><g:message code="update.location.label" /></span>
+						<g:if test="${state == State.findByState("Issued")}">
+						<% def loan = Loan.findByUpdate(assetInstance.getLatestUpdate()) %>
+						<span class="property-value"><g:link controller="client" action="show" id="${loan.client.id}">${loan.client}</g:link></span>
+						</g:if>
+						<g:else>
 						<span class="property-value"><g:link controller="location" action="show" id="${location.id}">${location.encodeAsHTML()}</g:link></span>
+						</g:else>
 					</li>
 					<li class="fieldcontain">
 						<span id="state-label" class="property-label"><g:message code="update.state.label" /></span>
@@ -52,16 +59,22 @@
 			</div><div class="clearBoth"></div>
 			<br>
 			<div id="distribute-asset" class="clearBoth">
-				<div style="float:left;">
+				<div id="client-search"style="float:left;">
 					<h2>Search by Last Name</h2>
-					<g:form action="list" method="post">
+					<g:formRemote name="client-form" url="[controller: 'client', action: 'findByLastName']" 
+									update="[success: 'client-results', failure: 'errors']">
+						<g:hiddenField name="hubId" value="${params.id}" />
 						<table>
-						<tr><td><g:textField name="username" value='${params.username}' /></td>
-						<td><g:actionSubmit class="button" value="Search" action="list" /></td>
+						<tr>
+						<td><g:textField name="lastName" value='${params.lastName}' /></td>
+						<td><input type="submit" class="button" value="Search" /></td>
 						</tr>
 						</table>
 						
-					</g:form>
+					</g:formRemote>
+				</div>
+				<div id="client-results" style="float:right;">
+				
 				</div>
 				<div>
 					

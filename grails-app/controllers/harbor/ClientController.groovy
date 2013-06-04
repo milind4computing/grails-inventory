@@ -1,6 +1,8 @@
 package harbor
 
 import org.springframework.dao.DataIntegrityViolationException
+import grails.converters.JSON
+import grails.converters.XML
 
 class ClientController {
 
@@ -113,4 +115,14 @@ class ClientController {
     }
 	
 	def search() {}
+	
+	def findByLastName() {
+		def clients = Client.findAllByLastNameLike("%${params.lastName}%")
+		render(template:'searchResults', model:[searchResults:clients])
+	}
+	
+	def showClientForDistribution() {
+		def client = Client.get(params.id)
+		render(template:'distribute', model:[clientInstance: client])
+	}
 }

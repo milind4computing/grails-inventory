@@ -28,6 +28,21 @@ class Loan {
 		userDamage()
     }
 	
+	static mapping = {
+		table "loans"
+		asset column: "asset_id", sqlType: "int"
+		client column: "client_id", sqlType: "int"
+		replacementAsset column: "replacement_asset_id", sqlType: "int"
+		occurredAt column: "occured_at", sqlType: "datetime"
+		loanAction column: "loan_action_id", sqlType: "int"
+		update column: "history_id", sqlType: "int"
+		userDamage column: "user_damage", sqlType: "tinyint"
+		loanActionReason column: "loan_action_reason_id", sqlType: "int"
+		replacementUpdate column: "replacement_history_id", sqlType: "int"
+		version false
+		
+	}
+	
 	String toString() {
 		occurredAt
 	}

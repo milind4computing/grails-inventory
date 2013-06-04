@@ -4,6 +4,7 @@ class Update {
 	
 	Asset asset
 	Location location
+	String locationComment
 	State state
 	Date occurredAt
 	User occurredBy
@@ -22,8 +23,18 @@ class Update {
     }
 	
 	static mapping = {
-		table "asset_update"
+		table "histories"
+		id column: "id", sqlType: "int"
+		asset column: "asset_id", sqlType: "int"
+		location column: "location_id", sqlType: "int"
+		locationComment column: "location_comment", sqlType: "text"
+		state column: "state_id", sqlType: "int"
+		occurredAt column: "occured_at", sqlType: "datetime"
+		note column: "note", sqlType: "text"
+		checkedOut column: "checked_out", sqlType: "tinyint"
+		occurredBy column: "occured_by", sqlType: "int"
 		checkedOut defaultValue: false
+		version false
 	}
 	
 	String toString() {

@@ -59,11 +59,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${userInstance?.isAdmin}">
+				<g:if test="${userInstance?.permissions}">
 				<li class="fieldcontain">
-					<span id="isAdmin-label" class="property-label"><g:message code="user.isAdmin.label" default="Is Admin" /></span>
+					<span id="permissions-label" class="property-label"><g:message code="user.permissions.label" default="Permissions" /></span>
 					
-						<span class="property-value" aria-labelledby="isAdmin-label"><g:formatBoolean boolean="${userInstance?.isAdmin}" /></span>
+						<span class="property-value" aria-labelledby="permissions-label"><g:fieldValue bean="${userInstance}" field="permissions" /></span>
 					
 				</li>
 				</g:if>

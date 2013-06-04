@@ -22,6 +22,7 @@ class UserController {
     }
 
     def save() {
+		params.password = User.hashPassword(params.password)
         def userInstance = new User(params)
         if (!userInstance.save(flush: true)) {
             render(view: "create", model: [userInstance: userInstance])

@@ -12,6 +12,12 @@ class Location {
 		moreSpecific()
     }
 	
+	static mapping =  {
+		table "locations"
+		id sqlType: "int"
+		version false
+	}
+	
 	String toString() {
 		"${location} ${moreSpecific}"
 	}

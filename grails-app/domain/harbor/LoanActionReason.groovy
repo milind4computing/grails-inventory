@@ -10,6 +10,12 @@ class LoanActionReason {
 		reason(blank:false)
     }
 	
+	static mapping = {
+		table "loan_action_reasons"
+		id sqlType: "int"
+		version false
+	}
+	
 	String toString() {
 		reason
 	}

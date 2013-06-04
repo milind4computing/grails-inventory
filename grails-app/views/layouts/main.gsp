@@ -15,6 +15,7 @@
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<g:javascript library="jquery" />
 		<script src="/harbor/js/main.js"></script>
 		<g:layoutHead/>
 		<r:layoutResources />

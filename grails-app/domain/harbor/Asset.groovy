@@ -10,10 +10,19 @@ class Asset {
 	static hasMany = [updates: Update]
 	
     static constraints = {
-		hubId(blank:false, unique:true, matches:"[0-9]+")
-		serviceTag(blank:false)
-		type()
+		hubId(blank:false, unique:true, matches:"[0-9]+",nullable: false)
+		serviceTag(blank:false, nullable: false)
+		type(nullable: false)
     }
+	
+	static mapping = {
+		table "assets"
+		id sqlType: "int"
+		hubId column: "hub_id", sqlType: "int"
+		serviceTag column: "service_tag"
+		type column: "asset_type_id", sqlType: "int"
+		version false
+	}
 	
 	String toString() {
 		hubId

@@ -32,7 +32,7 @@
 					
 						<g:sortableColumn property="lastName" title="${message(code: 'user.lastName.label', default: 'Last Name')}" />
 					
-						<g:sortableColumn property="isAdmin" title="${message(code: 'user.isAdmin.label', default: 'Is Admin')}" />
+						<g:sortableColumn property="permissions" title="${message(code: 'user.permissions.label', default: 'Permissions')}" />
 					
 					</tr>
 				</thead>
@@ -48,7 +48,7 @@
 					
 						<td>${fieldValue(bean: userInstance, field: "lastName")}</td>
 					
-						<td><g:formatBoolean boolean="${userInstance.isAdmin}" /></td>
+						<td>${userInstance.permissions}</td>
 					
 					</tr>
 				</g:each>

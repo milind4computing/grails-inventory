@@ -11,7 +11,9 @@ class Type {
     }
 	
 	static mapping = {
-		table "asset_type"
+		table "asset_types"
+		id column: "id", sqlType: "int"
+		version false
 	}
 	
 	String toString() {

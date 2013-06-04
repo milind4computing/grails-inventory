@@ -255,6 +255,15 @@ img {
 	background: inherit;
 }
 
+#client-results {
+	width: 200px;
+	padding: 10px;
+}
+
+#client-results-list {
+	list-style-type: none;
+}
+
 #main-content {
 	float:left;
 	width:65%;

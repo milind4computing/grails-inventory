@@ -34,28 +34,27 @@
 	<g:textField name="lastName" required="" value="${userInstance?.lastName}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'isAdmin', 'error')} ">
-	<label for="isAdmin">
-		<g:message code="user.isAdmin.label" default="Is Admin" />
+<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'permissions', 'error')} ">
+	<label for="permissions">
+		<g:message code="user.permissions.label" default="Permissions" />
 		
 	</label>
-	<g:checkBox name="isAdmin" value="${userInstance?.isAdmin}" />
+	<g:textField name="permissions" value="${userInstance?.permissions}" />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'updates', 'error')} ">
-	<label for="updates">
-		<g:message code="user.updates.label" default="Updates" />
+<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'email', 'error')} ">
+	<label for="email">
+		<g:message code="user.email.label" default="Email" />
 		
 	</label>
-	
-<ul class="one-to-many">
-<g:each in="${userInstance?.updates?}" var="u">
-    <li><g:link controller="update" action="show" id="${u.id}">${u?.encodeAsHTML()}</g:link></li>
-</g:each>
-<li class="add">
-<g:link controller="update" action="create" params="['user.id': userInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'update.label', default: 'Update')])}</g:link>
-</li>
-</ul>
+	<g:textField name="email" value="${userInstance?.email}" />
+</div>
 
+<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'department', 'error')} ">
+	<label for="department">
+		<g:message code="user.department.label" default="department" />
+		
+	</label>
+	<g:textField name="department" value="${userInstance?.department}" />
 </div>
 

@@ -10,6 +10,13 @@ class State {
 		state(blank:false)
     }
 	
+	static mapping = {
+		table "states"
+		id sqlType: "int"
+		state column: "status"
+		version false
+	}
+	
 	String toString() {
 		state
 	}
