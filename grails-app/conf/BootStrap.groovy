@@ -49,8 +49,8 @@ class BootStrap {
 //		new Location(location: "Surplused", moreSpecific: "", updates: [:]).save(failOnError:true)
 //		
 //		println "Creating users..."
-//		new User(username:"cscarborough", password: User.hashPassword("password"), permissions:"admin", firstName:"Casey", lastName:"Scarborough", 
-//			email:"CaseyScarborough@mail.clayton.edu", department:"The HUB", updates:[:]).save(failOnError:true)
+		new User(username:"cscarborough", password: User.hashPassword("password"), permissions:"admin", firstName:"Casey", lastName:"Scarborough", 
+			email:"CaseyScarborough@mail.clayton.edu", department:"The HUB", updates:[:]).save(failOnError:true)
 //		new User(username:"cread", password: User.hashPassword("password"), permissions:"admin", firstName:"Charles", lastName:"Read", 
 //			email:"CharlesRead@mail.clayton.edu", department:"Admin Systems", updates:[:]).save(failOnError:true)
 //		new User(username:"user1", password: User.hashPassword("password"), permissions:"", firstName:"User", lastName:"One", 
