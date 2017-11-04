@@ -15,7 +15,7 @@ environments {
 		
 		dataSource {
 			dbCreate = "update"
-			url = "jdbc:mysql://localhost:3306/harbor"
+			url = "jdbc:mysql://0.0.0.0:3306/harbor"
 			driverClassName = "com.mysql.jdbc.Driver"
 			username = "root"
 			password = "root"
